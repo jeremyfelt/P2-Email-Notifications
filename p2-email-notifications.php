@@ -47,9 +47,12 @@ function p2_10up_send_mentions( $post_id, $users, $tt_ids, $taxonomy_label ) {
 	$p2_name = get_bloginfo( 'name' );
 	$post_author = get_the_author_meta( 'display_name', $current_post->post_author );
 
+	$email_subject = "You've been Mentioned by " . $post_author . "! [" . $p2_name . "]";
+	$email_content = "You've been mentioned by " . $post_author . " in " . $post_link . "\n\n" . $current_post->post_content;
+
 	foreach ( $new_user_mentions as $user ) {
 		$user_full = get_user_by( 'login', $user );
-		wp_mail( $user_full->user_email, "You've been Mentioned by " . $post_author . "! [" . $p2_name . "]", "You've been mentioned by " . $post_author . " in " . $post_link . "\n\n" . $current_post->post_content );
+		wp_mail( $user_full->user_email, $email_subject, $email_content );
 	}
 
 	update_post_meta( $post_id, '_p2_notifications_sent', $users );
