@@ -36,7 +36,7 @@ function p2_10up_send_mentions( $post_id, $users, $tt_ids, $taxonomy_label ) {
 		return;
 
 	$post_link = get_permalink( $post_id );
-	$p2_data = get_current_site();
+	$p2_data = get_bloginfo( 'name' );
 	$post_author = get_the_author_meta( 'display_name', $current_post->post_author );
 
 	foreach ( $users as $user ) {
