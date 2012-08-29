@@ -50,10 +50,14 @@ function p2_10up_send_mentions( $post_id, $users, $tt_ids, $taxonomy_label ) {
 	$email_subject = "You've been Mentioned by " . $post_author . "! [" . $p2_name . "]";
 	$email_content = "You've been mentioned by " . $post_author . " in " . $post_link . "\n\n" . $current_post->post_content;
 
+	$user_emails = array();
+
 	foreach ( $new_user_mentions as $user ) {
 		$user_full = get_user_by( 'login', $user );
-		wp_mail( $user_full->user_email, $email_subject, $email_content );
+		$user_emails[] = $user_full->user_email;
 	}
+
+	wp_mail( $user_emails, $email_subject, $email_content );
 
 	update_post_meta( $post_id, '_p2_notifications_sent', $users );
 }
