@@ -24,8 +24,8 @@ License: GPL2
 	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-add_action( 'set_object_terms', 'p2_10up_send_mentions', 10, 6 );
-function p2_10up_send_mentions( $post_id, $users, $tt_ids, $taxonomy_label, $append, $old_tt_ids ) {
+add_action( 'set_object_terms', 'p2_10up_send_mentions', 10, 4 );
+function p2_10up_send_mentions( $post_id, $users, $tt_ids, $taxonomy_label ) {
 
 	if ( 'mentions' != $taxonomy_label )
 		return;
