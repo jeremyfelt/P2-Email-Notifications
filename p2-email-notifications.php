@@ -47,8 +47,8 @@ function p2_10up_send_mentions( $post_id, $users, $tt_ids, $taxonomy_label ) {
 	$p2_name = get_bloginfo( 'name' );
 	$post_author = get_the_author_meta( 'display_name', $current_post->post_author );
 
-	$email_subject = apply_filter( 'p2_10up_notification_subject', "You've been Mentioned by " . $post_author . "! [" . $p2_name . "]", $post_id, $post_author, $p2_name );
-	$email_content = apply_filter( 'p2_10up_notification_body', "You've been mentioned by " . $post_author . " in " . $post_link . "\n\n" . $current_post->post_content, $post_id, $post_author, $post_link );
+	$email_subject = apply_filters( 'p2_10up_notification_subject', "You've been Mentioned by " . $post_author . "! [" . $p2_name . "]", $post_id, $post_author, $p2_name );
+	$email_content = apply_filters( 'p2_10up_notification_body', "You've been mentioned by " . $post_author . " in " . $post_link . "\n\n" . $current_post->post_content, $post_id, $post_author, $post_link );
 
 	$user_emails = array();
 
