@@ -2,13 +2,13 @@
 /*
 Plugin Name: P2 Email Notifications
 Description: Basic email notification for mentions on P2
-Version: 0.1
+Version: 0.2
 Author: Jeremy Felt, 10up
 Author URI: http://10up.com
 License: GPL2
 */
 
-/*  Copyright 2012 Jeremy Felt (email: jeremy.felt@gmail.com)
+/*  Copyright 2012-2013 Jeremy Felt (email: jeremy.felt@gmail.com)
 
 	This program is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License, version 2, as
@@ -25,6 +25,20 @@ License: GPL2
 */
 
 add_action( 'set_object_terms', 'p2_10up_send_mentions', 10, 4 );
+/**
+ * P2 handles it's mention magic by matching users with terms in a custom taxonomy. Whenever an update
+ * is modified, whether it be a post or comment, P2 will search for any possible matching terms in the
+ * content and then update the terms on the post accordingly.
+ *
+ * This allows us to hook into `set_object_terms` and perform our own actions when users are added to
+ * the thread. Emails are sent once per user per thread. It would be nice one day to send an email for
+ * each mention in a thread, as a conversation could occur for a while.
+ *
+ * @param $post_id int current post ID
+ * @param $users array of terms, in this case users
+ * @param $tt_ids array of taxonomy/term ids, not used
+ * @param $taxonomy_label string taxonomy label
+ */
 function p2_10up_send_mentions( $post_id, $users, $tt_ids, $taxonomy_label ) {
 
 	if ( 'mentions' !== $taxonomy_label )
@@ -33,6 +47,11 @@ function p2_10up_send_mentions( $post_id, $users, $tt_ids, $taxonomy_label ) {
 	if ( ! $notifications_sent = get_post_meta( $post_id, '_p2_notifications_sent', true ) )
 		$notifications_sent = array();
 
+	/*
+	 * We only send mentions to users that have not already been mentioned on the post. Because
+	 * things are handled at the post level, it seems difficult so far to determine if this was
+	 * just fired due to a comment or initial update.
+	 */
 	$new_user_mentions = array_diff( $users, $notifications_sent );
 
 	if ( empty( $new_user_mentions ) )
