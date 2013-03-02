@@ -40,7 +40,7 @@ function p2_10up_send_mentions( $post_id, $users, $tt_ids, $taxonomy_label ) {
 
 	$current_post = get_post( $post_id );
 
-	if ( ! $current_post )
+	if ( ! $current_post || 'publish' !== $current_post->post_status )
 		return;
 
 	$post_link = get_permalink( $post_id );
