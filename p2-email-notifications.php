@@ -27,7 +27,7 @@ License: GPL2
 add_action( 'set_object_terms', 'p2_10up_send_mentions', 10, 4 );
 function p2_10up_send_mentions( $post_id, $users, $tt_ids, $taxonomy_label ) {
 
-	if ( 'mentions' != $taxonomy_label )
+	if ( 'mentions' !== $taxonomy_label )
 		return;
 
 	if ( ! $notifications_sent = get_post_meta( $post_id, '_p2_notifications_sent', true ) )
