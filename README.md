@@ -9,4 +9,4 @@ This plugin hooks in to the assignment of these mentions and works with `wp_mail
 
 ## Installation
 
-This plugin is **not** available on the [WordPress.org plugin repository](http://wordpress.org/extend/plugins), but can be installed by uploading the [zip file](https://github.com/jeremyfelt/P2-Updates-Via-OSX/archive/master.zip) provided by GitHub for this repository to your WordPress installation. WordPress will extract the files as needed and you will then be able to activate the plugin.
+This plugin is **not** available on the [WordPress.org plugin repository](http://wordpress.org/extend/plugins), but can be installed by uploading the [zip file](https://github.com/jeremyfelt/P2-Email-Notifications/archive/master.zip) provided by GitHub for this repository to your WordPress installation. WordPress will extract the files as needed and you will then be able to activate the plugin.
